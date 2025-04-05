@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("${api.prefix}/users")
@@ -71,4 +73,12 @@ public class UserController {
 
     /*get all users*/
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping
+    public ResponseEntity<ApiResponse> getAllUsers(){
+        List<User> user = userService.getAllUsers();
+        List<UserDto> convertUsers = userService.getConvertedUsers(user);
+        return ResponseEntity.ok(new ApiResponse("Success Get All Users", convertUsers));
+    }
+/**/
 }

@@ -47,7 +47,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
-
 @Configuration
 public class AppConfig {
 
@@ -56,7 +55,7 @@ public class AppConfig {
     private final MovieUserDetailsService movieUserDetailsService;
 
     private static final List<String> SECURED_URLS =
-            List.of("/api/v1/users/**");
+            List.of("/api/v1/users/**", "/api/v1/movies/**");
 
     @Bean
     public ModelMapper modelMapper() {

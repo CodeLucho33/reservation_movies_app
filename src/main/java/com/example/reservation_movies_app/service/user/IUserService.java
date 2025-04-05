@@ -17,4 +17,5 @@ public interface IUserService {
     User getAuthenticatedUser();
     User createUserLikeGuest( RequestCreateUserByGuest request);
     List<User> getAllUsers();
+    List<UserDto> getConvertedUsers(List<User> users);
 }

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -89,6 +90,9 @@ return userRepository.findById(userId)
 
     @Override
     public User createUserLikeGuest(RequestCreateUserByGuest request) {
+        if (request.getPassword() == null || request.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be null or empty");
+        }
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -101,5 +105,10 @@ return userRepository.findById(userId)
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<UserDto> getConvertedUsers(List<User> users) {
+        return users.stream().map(this::convertUserToUserDto).toList();
     }
 }
