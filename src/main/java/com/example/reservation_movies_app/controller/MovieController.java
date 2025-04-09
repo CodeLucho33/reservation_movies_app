@@ -6,7 +6,8 @@ import com.example.reservation_movies_app.exception.ResourceNotFoundException;
 import com.example.reservation_movies_app.model.Movie;
 import com.example.reservation_movies_app.request.CreateMovieRequest;
 import com.example.reservation_movies_app.response.ApiResponse;
-import com.example.reservation_movies_app.service.movie.MovieService;
+import com.example.reservation_movies_app.service.movie.IMovieService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("${api.prefix}/movies")
 public class MovieController {
-    private final MovieService movieService;
+    private final IMovieService movieService;
     /*Search movie by id
     * Required login: ADMIN
     * */
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{movieId}")
     public ResponseEntity<ApiResponse> getMovieById(@PathVariable Long movieId) {

@@ -55,7 +55,7 @@ public class AppConfig {
     private final MovieUserDetailsService movieUserDetailsService;
 
     private static final List<String> SECURED_URLS =
-            List.of("/api/v1/users/**", "/api/v1/movies/**");
+            List.of("/api/v1/users/**", "/api/v1/movies/**", "/api/v1/show/**");
 
     @Bean
     public ModelMapper modelMapper() {

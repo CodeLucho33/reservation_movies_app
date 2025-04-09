@@ -18,6 +18,7 @@ public class ShowTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime time;
+    private int numberOfSeats;
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
