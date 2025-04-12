@@ -89,6 +89,7 @@ public class ShowTimeService implements IShowTimeService {
     @Override
     public ShowTimeDto convertShowTimeToDto(ShowTime showTime) {
         ShowTimeDto   dto = new ShowTimeDto();
+        dto.setId(showTime.getId());
         dto.setTime(showTime.getTime());
         dto.setNumberOfSeats(showTime.getNumberOfSeats());
         dto.setMovieTitle(showTime.getMovie().getTitle());
@@ -100,5 +101,10 @@ public class ShowTimeService implements IShowTimeService {
         return showTimes.stream()
                 .map(this::convertShowTimeToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ShowTime> getAllShowTimes() {
+        return showTimeRespository.findAll();
     }
 }

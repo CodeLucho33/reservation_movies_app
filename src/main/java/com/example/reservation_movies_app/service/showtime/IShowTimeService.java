@@ -16,5 +16,5 @@ public interface IShowTimeService {
     ShowTime getShowTimeById(Long id);
     ShowTimeDto convertShowTimeToDto(ShowTime showTime);
     List<ShowTimeDto> getConvertedShowTimesToDto(List<ShowTime> showTimes);
-
+    List<ShowTime> getAllShowTimes();
 }

@@ -1,6 +1,7 @@
 package com.example.reservation_movies_app.model;
 
 import com.example.reservation_movies_app.enums.GenreMovie;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class Movie {
     @Enumerated(EnumType.STRING)
     private GenreMovie genreMovie;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true  )
     private List<ShowTime> showTimes;
 

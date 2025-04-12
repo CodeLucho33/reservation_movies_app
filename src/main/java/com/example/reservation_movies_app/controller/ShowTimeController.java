@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -100,5 +101,13 @@ public class ShowTimeController {
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Show time not found", null));
         }
+    }
+
+    @PreAuthorize("hasRole('REGULAR')")
+    @GetMapping
+    public ResponseEntity<ApiResponse> getAllShowTimes() {
+        List<ShowTime> showTimes = showTimeService.getAllShowTimes();
+        List<ShowTimeDto> showTimeDto = showTimeService.getConvertedShowTimesToDto(showTimes);
+        return ResponseEntity.ok(new ApiResponse("Success Get All Users", showTimeDto));
     }
 }

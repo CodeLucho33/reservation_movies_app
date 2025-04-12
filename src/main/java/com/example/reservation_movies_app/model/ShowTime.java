@@ -1,5 +1,8 @@
 package com.example.reservation_movies_app.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +23,7 @@ public class ShowTime {
     private LocalDateTime time;
     private int numberOfSeats;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "movie_id")
     private Movie movie;

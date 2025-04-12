@@ -91,5 +91,17 @@ public class MovieController {
         return ResponseEntity.ok(new ApiResponse("Success retrieved movies", convertMovies));
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
 
 }
