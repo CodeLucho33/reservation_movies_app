@@ -25,7 +25,7 @@ public class ShowTimeController {
 
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ApiResponse> createShowTime(@RequestBody CreateShowTimeRequest request) {
         try {
             ShowTime showTime = showTimeService.createShowTime(request);
@@ -40,7 +40,7 @@ public class ShowTimeController {
     }
 
     @DeleteMapping("/{showId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ApiResponse> deleteShowTime(@PathVariable Long showId) {
         try {
             showTimeService.deleteShowTime(showId);
@@ -53,7 +53,7 @@ public class ShowTimeController {
 
 
     @PutMapping("/{showId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ApiResponse> updateShowTime(@RequestBody CreateShowTimeRequest request, @PathVariable Long showId) {
         try {
             ShowTime showTime = showTimeService.updateShowTime(request, showId);
@@ -66,7 +66,7 @@ public class ShowTimeController {
 
 
     @GetMapping("movie-id/{movieId}")
-    @PreAuthorize("hasRole('REGULAR')")
+    @PreAuthorize("hasRole('ROLE_REGULAR')")
     public ResponseEntity<ApiResponse> getShowTimesByMovieId(@PathVariable Long movieId){
         try {
             List<ShowTime> showTimes = showTimeService.getShowTimesByMovieId(movieId);
@@ -79,7 +79,7 @@ public class ShowTimeController {
 
 
     @GetMapping(params = "title")
-    @PreAuthorize("hasRole('REGULAR')")
+    @PreAuthorize("hasRole('ROLE_REGULAR')")
     public ResponseEntity<ApiResponse> getShowTimesByTitle(@RequestParam String title){
         try {
             List<ShowTime> showTimes = showTimeService.getShowTimesByTitle(title);
@@ -92,7 +92,7 @@ public class ShowTimeController {
     }
 
     @GetMapping("/{showId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ApiResponse> getShowTimeById(@PathVariable Long showId){
         try {
             ShowTime showTime = showTimeService.getShowTimeById(showId);
@@ -103,7 +103,7 @@ public class ShowTimeController {
         }
     }
 
-    @PreAuthorize("hasRole('REGULAR')")
+    @PreAuthorize("hasRole('ROLE_REGULAR')")
     @GetMapping
     public ResponseEntity<ApiResponse> getAllShowTimes() {
         List<ShowTime> showTimes = showTimeService.getAllShowTimes();

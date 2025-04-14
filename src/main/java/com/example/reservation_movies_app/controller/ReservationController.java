@@ -21,7 +21,7 @@ import java.util.List;
 public class ReservationController {
     private final IReservationService reservationService;
 
-    @PreAuthorize("hasRole('REGULAR')")
+    @PreAuthorize("hasRole('ROLE_REGULAR')")
     @PostMapping
     public ResponseEntity<ApiResponse> createReservation(@RequestBody CreateReservationRequest request) {
     try {
@@ -32,7 +32,7 @@ public class ReservationController {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(new ApiResponse("Reservation already exists", null));
     }
 }
-@PreAuthorize("hasRole('REGULAR')")
+@PreAuthorize("hasRole('ROLE_REGULAR')")
 @GetMapping("/{userId}")
 public ResponseEntity<ApiResponse> getReservationsByUser(@PathVariable Long userId) {
     try {

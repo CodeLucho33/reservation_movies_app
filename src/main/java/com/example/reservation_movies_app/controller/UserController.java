@@ -23,7 +23,7 @@ public class UserController {
     private final IUserService userService;
 
     /*Search user by id*/
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/{userId}")
     public ResponseEntity<ApiResponse> getUserById(@PathVariable Long userId) {
         try {
@@ -35,7 +35,7 @@ public class UserController {
         }
     }
     /*Add user to bd*/
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<ApiResponse> createUser(@RequestBody RequestCreateUserByAdmin request) {
         try {
@@ -47,7 +47,7 @@ public class UserController {
         }
     }
     /*update user*/
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{userId}")
     public ResponseEntity<ApiResponse> updateUser(@RequestBody RequestUpdateUserLikeAdmin request, @PathVariable Long userId) {
         try {
@@ -60,7 +60,7 @@ public class UserController {
 
     }
     /*delete user*/
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{userId}")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long userId) {
         try {
@@ -73,7 +73,7 @@ public class UserController {
 
     /*get all users*/
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
     public ResponseEntity<ApiResponse> getAllUsers(){
         List<User> user = userService.getAllUsers();
