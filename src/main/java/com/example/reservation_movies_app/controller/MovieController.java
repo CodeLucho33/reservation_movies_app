@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class MovieController {
     * Required login: ADMIN
     * */
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/{movieId}")
     public ResponseEntity<ApiResponse> getMovieById(@PathVariable Long movieId) {
         try {
@@ -40,7 +41,7 @@ public class MovieController {
     /*Create movie
     * * Required login: ADMIN
     * */
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<ApiResponse> createMovie(@RequestBody CreateMovieRequest request) {
         try {
@@ -55,7 +56,7 @@ public class MovieController {
     /* Update movie
     * * Required login: ADMIN
     * */
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{movieId}")
     public ResponseEntity<ApiResponse> updateMovie(@PathVariable Long movieId, @RequestBody CreateMovieRequest request) {
         try {
@@ -70,7 +71,7 @@ public class MovieController {
     /* Delete movie
     * * Required login: ADMIN
     * */
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{movieId}")
     public ResponseEntity<ApiResponse> deleteMovie(@PathVariable Long movieId) {
         try {
@@ -83,7 +84,7 @@ public class MovieController {
 
     /*Get all movies
     * Required login : REGULAR*/
-    @PreAuthorize("hasRole('REGULAR')")
+    @PreAuthorize("hasRole('ROLE_REGULAR')")
     @GetMapping
     public ResponseEntity<ApiResponse> getAllMovies() {
         List<Movie> movie = movieService.getAllMovies();

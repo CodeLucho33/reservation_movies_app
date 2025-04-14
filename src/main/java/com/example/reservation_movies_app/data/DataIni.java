@@ -37,7 +37,7 @@ public class DataIni implements ApplicationListener<ApplicationReadyEvent> {
             user.setLastName("User" + i);
             user.setEmail(defaultEmail);
             user.setPassword(passwordEncoder.encode("123456"));
-            user.setRole(Role.REGULAR); // Establece el rol de usuario
+            user.setRole(Role.ROLE_REGULAR); // Establece el rol de usuario
             userRepository.save(user);
             System.out.println("User " + i + " created");
         }
@@ -55,7 +55,7 @@ public class DataIni implements ApplicationListener<ApplicationReadyEvent> {
             user.setLastName("Admin" + i);
             user.setEmail(defaultEmail);
             user.setPassword(passwordEncoder.encode("123456"));
-            user.setRole(Role.ADMIN); // Establece el rol de administrador
+            user.setRole(Role.ROLE_ADMIN); // Establece el rol de administrador
             userRepository.save(user);
             System.out.println("Admin " + i + " created");
         }

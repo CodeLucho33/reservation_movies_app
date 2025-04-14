@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -98,7 +97,7 @@ return userRepository.findById(userId)
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
-        user.setRole(Role.REGULAR);
+        user.setRole(Role.ROLE_REGULAR);
         return userRepository.save(user);
     }
 
